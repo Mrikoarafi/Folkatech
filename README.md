@@ -1,3 +1,7 @@
+<img width="957" alt="FOLKATECCH2" src="https://user-images.githubusercontent.com/50771883/170119945-47cdaf11-e722-429c-9299-5019a29460f2.png">
+<img width="960" alt="folkatech" src="https://user-images.githubusercontent.com/50771883/170119953-ca3c2d06-d20f-4186-9480-5e06add82ce2.png">
+
+
 # folkatech
 
 ## Build Setup
