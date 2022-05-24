@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/gotham/GothamMedium.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-style: light;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/gotham/GothamLight.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Gotham';
+  font-style: bold;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/gotham/GothamBold.ttf') format('truetype');
+}
+
+/* AUTO */
+@layer base {
+  html {
+    font-family: Gotham;
+  }
+}
+
+/* Sweetalert2 */
+.swal2-title {
+  font-size: 20px !important;
+}
+
+.globalShadow {
+  box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.25);
+}
