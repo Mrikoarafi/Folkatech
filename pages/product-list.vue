@@ -21,32 +21,7 @@
       </button>
     </div>
     <div class="px-[70px] py-7 flex flex-col flex-1">
-      <!-- BREADCRUMB -->
-      <div class="flex items-center font-thin text-sm space-x-5 mb-10">
-        <p>Home</p>
-        <svg
-          width="13"
-          height="13"
-          viewBox="0 0 13 13"
-          class="mt-1"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M6.65865 3.40865C6.87018 3.19712 7.21315 3.19712 7.42468 3.40865L10.133 6.11698C10.3446 6.32852 10.3446 6.67148 10.133 6.88302L7.42468 9.59135C7.21315 9.80288 6.87018 9.80288 6.65865 9.59135C6.44712 9.37982 6.44712 9.03685 6.65865 8.82532L8.98397 6.5L6.65865 4.17468C6.44712 3.96315 6.44712 3.62018 6.65865 3.40865Z"
-            fill="#868686"
-          />
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M2.86702 3.40865C3.07856 3.19712 3.42152 3.19712 3.63306 3.40865L6.34139 6.11698C6.55292 6.32852 6.55292 6.67148 6.34139 6.88302L3.63306 9.59135C3.42152 9.80288 3.07856 9.80288 2.86702 9.59135C2.65549 9.37982 2.65549 9.03685 2.86702 8.82532L5.19234 6.5L2.86702 4.17468C2.65549 3.96315 2.65549 3.62018 2.86702 3.40865Z"
-            fill="#868686"
-          />
-        </svg>
-        <p class="text-[#EB3F36]">Produk</p>
-      </div>
+      <SmallBreadcrumb :list="['Home', 'product', 'total']" />
 
       <!-- PRODUCT -->
       <div
@@ -59,34 +34,43 @@
         <div
           v-for="item in getAll.product.data.list"
           :key="item.id"
-          class="flex flex-col text-center h-[370px] cursor-pointer hover:rounded-lg duration-200 hover:bg-slate-100 ease-in-out hover:p-3"
+          class="flex flex-col text-center h-max cursor-pointer hover:rounded-lg duration-200 hover:bg-slate-100 ease-in-out hover:p-3"
           @click="$router.push(`/product-detail/${item.name.split('-').pop()}`)"
         >
-          <img :src="item.images[0].image_url" alt="" />
-          <p class="text-sm mt-4">{{ item.name }}</p>
-          <p class="text-[#EB3F36] text-sm mt-auto">
+          <img :src="item.images[0].image_url" alt="picture" />
+          <p
+            class="mt-4 font-thin text-[15px]"
+            v-html="changeTextMixins(item.name)"
+          ></p>
+          <div
+            class="mt-4 font-thin text-[13px]"
+            v-html="changeTextMixins(item.short_description)"
+          ></div>
+          <p class="text-[#EB3F36] text-sm mt-auto py-2">
             {{ priceFormatMixins(item.price) }}
           </p>
         </div>
       </div>
       <!-- PAGINATION -->
-      <div v-if="getAll.product" class="flex self-center space-x-4 mt-auto">
-        <button
-          class="bg-blue-400 rounded-lg p-2 text-white disabled:opacity-80"
-          :disabled="payload.page === 1"
-          type="button"
-          @click="prev()"
-        >
-          Prev
-        </button>
-        <button
-          type="button"
-          class="bg-blue-400 rounded-lg p-2 text-white disabled:opacity-80"
-          :disabled="payload.page >= maxNext"
-          @click="next()"
-        >
-          Next
-        </button>
+      <div v-if="getAll.product" class="mt-auto self-center">
+        <div class="flex space-x-4 mt-20">
+          <button
+            class="bg-blue-400 rounded-lg p-2 text-white disabled:opacity-80"
+            :disabled="payload.page === 1"
+            type="button"
+            @click="prev()"
+          >
+            Prev
+          </button>
+          <button
+            type="button"
+            class="bg-blue-400 rounded-lg p-2 text-white disabled:opacity-80"
+            :disabled="payload.page >= maxNext"
+            @click="next()"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -99,8 +83,6 @@ export default {
   middleware: 'isLogin',
   data() {
     return {
-      maxprice: '',
-      minprice: '',
       payload: {
         search: this.$route.query.search || '',
         price: '',

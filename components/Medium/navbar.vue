@@ -11,7 +11,6 @@
         placeholder="Cari Produk"
       />
       <button
-        :disabled="$route.name !== 'product-list'"
         type="button"
         class="bg-[#EB3F36] hover:bg-red-600 px-5"
         @click="searching()"
@@ -181,12 +180,22 @@ export default {
     searching() {
       this.payload.page = 1
       this.getProduct(this.payload)
-      this.$router.push({
-        query: {
-          search: this.payload.search,
-          page: this.payload.page,
-        },
-      })
+      if (this.payload.search === '') {
+        this.$router.push({
+          path: '/product-list',
+          query: {
+            page: this.payload.page,
+          },
+        })
+      } else {
+        this.$router.push({
+          path: '/product-list',
+          query: {
+            search: this.payload.search,
+            page: this.payload.page,
+          },
+        })
+      }
     },
   },
 }

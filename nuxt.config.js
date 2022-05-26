@@ -49,7 +49,7 @@ export default {
     redirect: {
       logout: '/login',
       callback: false,
-      home: '/',
+      home: false,
     },
     strategies: {
       local: {

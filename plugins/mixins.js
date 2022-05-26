@@ -12,10 +12,11 @@ const mixins = {
       return 'Rp ' + new Intl.NumberFormat('id').format(params)
     },
     changeTextMixins(params) {
-      alert(params)
-      params.replace(/-/g, '<br/>')
-      params.replace(/\n/g, '<br />')
-      return params.replace(/\\n/g, '<br /><br />')
+      const change = params
+        .replace(/\\n/g, '<br />')
+        .replace(/\\\n/g, '<br /><br />')
+        .replace(/\\"([^\\"]+)\\"/g, '<b>$1</b>')
+      return change
     },
   },
 }
