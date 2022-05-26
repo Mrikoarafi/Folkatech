@@ -87,15 +87,17 @@
               class="w-[415px] h-[415px] self-center"
             />
           </div>
-          <p class="text-[30px] mx-auto">
-            {{ getAll.product.data.list[0].name }}
-          </p>
+          <p
+            class="text-[30px] mx-auto"
+            v-html="changeTextMixins(getAll.product.data.list[0].name)"
+          ></p>
           <p class="text-[#EB3F36] text-[20px] mx-auto">
             {{ priceFormatMixins(getAll.product.data.list[0].price) }}
           </p>
-          <p class="mt-5 break-all text-[17px] mx-auto">
-            {{ getAll.product.data.list[0].description }}
-          </p>
+          <p
+            class="mt-5 break-all text-[17px] mx-auto"
+            v-html="changeTextMixins(getAll.product.data.list[0].description)"
+          ></p>
         </div>
       </div>
     </div>

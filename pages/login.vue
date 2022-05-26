@@ -51,8 +51,8 @@ export default {
     return {
       button_disabled: false,
       form: {
-        email: '',
-        password: '',
+        email: 'muhamad.rikoarafi@gmail.com',
+        password: 'sampedelapan',
       },
     }
   },

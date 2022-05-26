@@ -60,7 +60,7 @@
           v-for="item in getAll.product.data.list"
           :key="item.id"
           class="flex flex-col text-center h-[370px] cursor-pointer hover:rounded-lg duration-200 hover:bg-slate-100 ease-in-out hover:p-3"
-          @click="$router.push(`/product-detail/${item.name}`)"
+          @click="$router.push(`/product-detail/${item.name.split('-').pop()}`)"
         >
           <img :src="item.images[0].image_url" alt="" />
           <p class="text-sm mt-4">{{ item.name }}</p>
